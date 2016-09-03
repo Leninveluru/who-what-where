@@ -13,7 +13,7 @@ var bodyParser = require('body-parser');
 var opener     = require('opener');
 
 var app = express();
-app.use(serveStatic(__dirname + './build'));
+app.use(serveStatic(__dirname + '/build'));
 app.use(bodyParser.json());
 
 /*Yelp middleware*/

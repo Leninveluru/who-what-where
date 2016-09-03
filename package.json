@@ -16,6 +16,7 @@
   "author": "Lenin Veluru",
   "license": "BSD",
   "dependencies": {
+    "dodge": "^0.6.2",
     "opener": "~1.4.1"
   }
 }
