@@ -1,0 +1,21 @@
+{
+  "name": "who-what-where",
+  "version": "1.0.0",
+  "description": "business search",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Leninveluru/who-what-where.git"
+  },
+  "keywords": [
+    "business"
+  ],
+  "author": "Lenin Veluru",
+  "license": "BSD",
+  "dependencies": {
+    "opener": "~1.4.1"
+  }
+}
