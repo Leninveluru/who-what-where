@@ -3,3 +3,23 @@ html, body {
 	margin: 0;
 	padding: 0;
 }
+
+.app-heading{
+	background-color: gray;
+	text-align: center
+}
+
+.search-container {
+
+	width:50%;
+	height: 50%;
+	background-color: green;
+
+}
+
+.map-container{
+	width:50%;
+	height: 50%;
+	background-color: red;
+}
+
