@@ -10,16 +10,72 @@ html, body {
 }
 
 .search-container {
+	width:30%;
+	height: 768px;
+	overflow-y: auto;
+	background-color: green;    
+}
 
-	width:50%;
-	height: 50%;
-	background-color: green;
+.panel-container{
+	margin-left: 10px;
+	margin-top: 10px;
+    width: 330px;
+    
+    border-radius: 5px;
+    background-color: grey;
+    border: 1px solid red;
+    margin-bottom: 10px;
+}
+
+.item-details{
+	margin-left: 125px;
+	margin-top: 10px;
+}	
+
+.name{
+	font-size: 20px
+    color: #004099;
+    font-weight: bold;
+}
+
+.address{
+}
+
+.rating-button{
+	width: 42px;
+    height: 28px;
+    background-color: blue;
+    font-size: 16px;
+    font-style: italic;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    float: right;
+    margin-top: -35px;
+    border-radius: 1px;
+    line-height: 30px;
+    border-radius: 7px;
 
 }
 
+.image{
+	width: 100px;
+	height: 100px;
+}
+
+#searchInput{
+    font-size: 20px;
+    float: right;
+    background: #fff;
+    color: #42454e;
+    min-width: 314px;
+    padding: 13px 8px;
+    margin-top: -64px;
+    margin-right: 165px;
+}
+
 .map-container{
-	width:50%;
+	width:70%;
 	height: 50%;
-	background-color: red;
 }
 

@@ -6,6 +6,7 @@
 	<script src="js/lib/angular.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSbvcezJj5j0HBOeEQ7xEKcwZYmRPRW3A"></script>
 	<script src="js/controller.js"></script>
+	<script type="text/javascript" src="js/lib/jquery.min.js"></script>
 
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="/css/index.css">
@@ -14,15 +15,33 @@
 <div class="row app-heading">
 	<h1>Who What Where</h1>
 </div>
+<!-- <div class="search-box"></div> -->
 <div class="row">
 
-	<div class="col-xs-4 search-container">
-	efsergrdgdghhddd
-		
-    </div>
-	    
+	<div class="col-xs-4 right-div search-container">
+		<div class1="list grid" 
+        	ng-repeat="item in responseDetails track by $index"
+        	class="item-detail" id="{{ item.name }}" ng-click="gotoBusiness(item.url)" ng-mouseover="onMouseOverMarker($event)">
 
-	<div class="col-xs-8 map-container">secibdgdrgf</div>
+        	<div class="panel-container">
+        		<div class="pull-left">
+           		<img class="image" ng-src="{{item.image}}"/>
+            </div>
+            <div class="item-details">
+            	<div class="name">{{item.name}}</div>
+	            <div class="address">{{item.address}}</div>
+	            <div class="phone">{{item.phone}}</div>
+	            <div class="rating">{{item.city}}</div>
+	            <!-- <div class="rating-button">{{item.rating}}</div> -->	
+            </div> 
+        	</div>
+            
+    	</div> 
+    </div>
+
+	<div class="col-xs-8 map-container">
+		<div id="map" style="width: 100%; height: 800px;"></div>
+	</div>
 </div>
 </body>
 </html>
