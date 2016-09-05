@@ -16,7 +16,12 @@
   "author": "Lenin Veluru",
   "license": "BSD",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "dodge": "^0.6.2",
-    "opener": "~1.4.1"
+    "express": "^4.14.0",
+    "lodash": "^4.15.0",
+    "opener": "~1.4.1",
+    "serve-static": "^1.11.1",
+    "yelp": "^1.0.1"
   }
 }
