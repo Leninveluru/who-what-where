@@ -27,8 +27,8 @@ app.controller('myCtrl', function ($scope, $http, $window) {
 					});
 				}
 
-				//Load the google map markers function
-				loadGoogleMarkers();
+				//Load the google map function
+				loadInitMapMarkers();
 			} else {
 				console.log('No Results found');
 			}
@@ -104,7 +104,7 @@ app.controller('myCtrl', function ($scope, $http, $window) {
 		}
 	};
 
-	function scrollElement(number) {
+	function onScrollElementToTop(number) {
 		$('.list-container').animate({
 			scrollTop: $('.list-container .element-' + number).offset().top - 250
 		}, 1000);
@@ -130,15 +130,14 @@ app.controller('myCtrl', function ($scope, $http, $window) {
 
 		//click on marker
 		marker.addListener('click', function () {
-			console.log('scrollElement', _marker.number);
-			scrollElement(_marker.number);
+			onScrollElementToTop(_marker.number);
 		});
 
 		return marker;
 	}
 
 	//map
-	function loadGoogleMarkers() {
+	function loadInitMapMarkers() {
 		var locations = $scope.responseDetails;
 		loadMap(locations[0].cords);
 		var i;

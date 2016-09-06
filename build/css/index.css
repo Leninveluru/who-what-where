@@ -2,11 +2,13 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: gray;
+    background-color: bisque;
+    overflow-x: hidden;
 }
 
 .set-border-color{
     border: 5px solid #483d3b;
+    background-color: #1ba9b5;
 }
 
 .app-heading {
@@ -27,9 +29,11 @@ html, body {
     text-align: center;
     font-size: 30px;
     color: #0035ff;
-    margin-top: 100px;
     font-style: italic;
     font-weight: 700;
+    margin-top: 30px;
+    border: 3px solid green;
+    background-color: palegreen;
 }
 
 .list-container {
