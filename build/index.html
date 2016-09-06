@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html ng-app="who-what-where">
 <head>
-	<meta name="viewport" content="initial-scale=1.0">
-	<meta charset="utf-8">
-	<script src="js/lib/angular.min.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSbvcezJj5j0HBOeEQ7xEKcwZYmRPRW3A"></script>
-	<script src="js/controller.js"></script>
-	<script type="text/javascript" src="js/lib/jquery.min.js"></script>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <script src="js/lib/angular.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSbvcezJj5j0HBOeEQ7xEKcwZYmRPRW3A"></script>
+    <script src="js/controller.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.min.js"></script>
 
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 <body ng-controller="myCtrl">
-<div class="row">
-	<h1 class="pull-left app-heading">Who What Where</h1>
-	<div class="pull-right search-box">
+<div class="row set-border-color">
+    <h1 class="pull-left app-heading">Who What Where</h1>
+    <div class="pull-right search-box">
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
                 <input type="text" placeholder="What?" ng-model="query"/>
@@ -23,35 +23,50 @@
                 <input type="text" placeholder="Where?" ng-model="location"/>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-                <button class="btn btn-info" ng-click="onSearch()">Search</button>
+                <button class="btn btn-info" ng-click="onSearchButton()">Search</button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="row main-container ">
-	<div class="col-xs-4 list-container">
-		<div class="list grid" 
-        	ng-repeat="item in responseDetails track by $index"
-        	class="item-detail" id="{{ item.id }}"
-        	ng-click="onClick(item.url)">
+<!--default food items-->
+<div ng-if="!showListAndMap">
+    <h1 class="set-header-text">Find the best places to eat, drink, shop, or visit in any city in the world.</h1>
+    <div class="row">
+        <div class="col-xs-4"></div>
+        <div class="col-xs-2">
+            <div><img ng-repeat="img in [0,1]" ng-src="./images/food.jpg"/></div>
+        </div>
+        <div class="col-xs-2">
+            <div><img ng-repeat="img in [0,1]" ng-src="./images/food.jpg"/></div>
+        </div>
+        <div class="col-xs-4"></div>
+    </div>
+</div>
 
-        	<div class="panel-container">
-        		<div class="pull-left"><img class="image" ng-src="{{item.image}}"/></div>
-	            <div class="item-details">
-	            	<div class="item-name">{{item.id + '. ' +item.name}}</div>
-		            <div class="item-address">{{item.address}}</div>
-		            <div class="item-phone">{{item.phone}}</div>
-		            <div class="item-rating">{{item.city}}</div>
-		            <div class="rating-button">{{item.rating}}</div>	
-	            </div> 
-        	</div>
-    	</div> 
+<!-- displaying the list and map -->
+<div ng-if="showListAndMap" class="row main-container ">
+    <div class="col-xs-4 list-container">
+        <div class="list grid element-{{item.class}}"
+             ng-repeat="item in responseDetails track by $index"
+             id="{{ item.id }}" ng-click="onClick(item.url)">
+
+            <div class="panel-container">
+                <div class="pull-left"><img class="image" ng-src="{{item.image}}"/></div>
+                <div class="item-details">
+                    <div class="item-name">{{(item.class + 1) + '. ' +item.name}}</div>
+                    <div class="item-address">{{item.address}}</div>
+                    <div class="item-phone">{{item.phone}}</div>
+                    <div class="item-rating">{{item.city}}</div>
+                    <!-- <div class="rating-button">{{item.rating}}</div>-->
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="col-xs-8 map-container">
-		<div id="map" style="width: 100%; height: 800px;"></div>
-	</div>
+        <div id="map" style="width: 100%; height: 868px;"></div>
+    </div>
 </div>
 </body>
 </html>

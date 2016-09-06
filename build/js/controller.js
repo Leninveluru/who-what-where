@@ -1,101 +1,160 @@
 var app = angular.module('who-what-where', []);
 
-app.controller('myCtrl', function($scope, $http, $window) {
+app.controller('myCtrl', function ($scope, $http, $window) {
 	$scope.responseDetails = [];
-	var markers = [];
-    function getData(input){
-        $http.post('/getdata',input).then(function (resp) {
-            if (resp.data instanceof Array && resp.data.length > 0) {
-                var respData = resp.data;
-                setMapOnAll();
-                markers.length = 0;
-                $scope.responseDetails = [];
-				for(var i=0; i< respData.length;i++){
+	var markers            = [];
+	var map;
+	$scope.showListAndMap  = false;
+
+	function getData(input) {
+		$http.post('/getdata', input).then(function (resp) {
+			if (resp.data instanceof Array && resp.data.length > 0) {
+				var respData = resp.data;
+				setMapOnAllMarkers();
+				markers.length         = 0;
+				$scope.responseDetails = [];
+				for (var i = 0; i < respData.length; i++) {
 					$scope.responseDetails.push({
-						id: (i + 1),
+						class  : i,
 						address: respData[i].address,
-	                    city: respData[i].city,
-	                    name: respData[i].name,
-	                    phone: respData[i].phone,
-	                    rating: respData[i].rating,
-	                    cords: respData[i].cords,
-	                    url: respData[i].url,
-	                    image: respData[i].photo                    
-					})
+						city   : respData[i].city,
+						name   : respData[i].name,
+						phone  : respData[i].phone,
+						rating : respData[i].rating,
+						cords  : respData[i].cords,
+						url    : respData[i].url,
+						image  : respData[i].photo
+					});
 				}
 
+				//Load the google map markers function
 				loadGoogleMarkers();
-            } else {
-                console.log('No Results found');
-            }
-        }, function (error) {
-            console.error(error);
-        });
-    }
+			} else {
+				console.log('No Results found');
+			}
+		}, function (error) {
+			console.error(error);
+		});
+	}
 
-    $scope.onSearch = function(){
-        if($scope.location.toString().trim().length > 0) {
-            getData({query: $scope.query, location: $scope.location});
-        }else{
-            alert('please enter a location');
-        }
-    };
+	//on search button functionality
+	$scope.onSearchButton = function () {
+		if ($scope.location.toString().trim().length > 0) {
+			$scope.showListAndMap = true;
+			getData({query: $scope.query, location: $scope.location});
+		} else {
+			alert('please enter a location');
+		}
+	};
 
-	function setMapOnAll() {
-        for (var i = 0; i < markers.length; i++) {
-            markers[i].setMap(null);
-        }
-    }
+	function onCityPositionUpdate(position) {
+		getCurrentCityPosition(position.coords.latitude, position.coords.longitude);
+	}
+
+	function getCurrentCityPosition(latitude, longitude) {
+		var latlng = new google.maps.LatLng(latitude, longitude);
+
+		new google.maps.Geocoder().geocode(
+			{'latLng': latlng},
+			function (results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					if (results[0]) {
+						var value = results[0].formatted_address.split(",");
+						var count = value.length;
+						var city  = value[count - 3];
+						$scope.$apply(function () {
+							$scope.location = city;
+						});
+					}
+					else {
+						console.log("address not found");
+					}
+				}
+				else {
+					console.log("Geocoder failed due to: " + status);
+				}
+			}
+		);
+	}
+
+	navigator.geolocation.getCurrentPosition(onCityPositionUpdate,
+		function () {
+			$scope.location = 'Pune';
+		},
+		{enableHighAccuracy: true, timeout: 5000, maximumAge: 600000});
+
+	function setMapOnAllMarkers() {
+		for (var i = 0; i < markers.length; i++) {
+			markers[i].setMap(null);
+		}
+	}
 
 	function loadMap(cords) {
-        map = new google.maps.Map(document.getElementById('map'), {
-            zoom  : 16,
-            center: new google.maps.LatLng(cords.lat, cords.lon)
-        });
-    }
+		map = new google.maps.Map(document.getElementById('map'), {
+			zoom  : 16,
+			center: new google.maps.LatLng(cords.lat, cords.lon)
+		});
+	}
 
-    //on click
-    $scope.onClick = function(url){
-    	if(url === 'NA'){
-            //no url
-        }else{
-        $window.open(url, '_blank');}
-    }
+	$scope.onClick = function (url) {
+		if (url === 'NA') {
+			//no url
+		} else {
+			$window.open(url, '_blank');
+		}
+	};
+
+	function scrollElement(number) {
+		$('.list-container').animate({
+			scrollTop: $('.list-container .element-' + number).offset().top - 250
+		}, 1000);
+	}
+
+	function addMarker(_marker) {
+		var marker = new google.maps.Marker({
+			position: _marker.position,
+			map     : map
+		});
+
+		var infowindow = new google.maps.InfoWindow({
+			content: _marker.title
+		});
+
+		marker.addListener('mouseover', function () {
+			infowindow.open(map, marker);
+		});
+
+		marker.addListener('mouseout', function () {
+			infowindow.close();
+		});
+
+		//click on marker
+		marker.addListener('click', function () {
+			console.log('scrollElement', _marker.number);
+			scrollElement(_marker.number);
+		});
+
+		return marker;
+	}
 
 	//map
-	function loadGoogleMarkers(){
-        var locations = $scope.responseDetails;
-        loadMap(locations[0].cords);
-        
-        var infowindow = new google.maps.InfoWindow();
-        var bounds = new google.maps.LatLngBounds();
+	function loadGoogleMarkers() {
+		var locations = $scope.responseDetails;
+		loadMap(locations[0].cords);
+		var i;
 
-        var i;
+		for (i = 0; i < locations.length; i++) {
+			var cords = locations[i].cords;
 
-        for (i = 0; i < locations.length; i++) {
-            var cords = locations[i].cords;
+			var _marker = new google.maps.Marker({
+				number  : i,
+				position: new google.maps.LatLng(cords.lat, cords.lon),
+				title   : locations[i].name,
+				map     : map
+			});
 
-            var marker = new google.maps.Marker({
-                id: locations[i].id,
-                position: new google.maps.LatLng(cords.lat, cords.lon),
-                map: map
-            });
-
-            var infowindow = new google.maps.InfoWindow({
-                content: locations[i].name
-            });
-
-            marker.addListener('mouseover', function () {
-            	console.log("marker", locations[i].name)
-                infowindow.open(map, locations[i].name);
-            });
-
-            marker.addListener('mouseout', function () {
-                infowindow.close();
-            });
-
-            markers.push(marker);
-        }
-    }
+			markers.push(addMarker(_marker));
+		}
+	}
 
 });
