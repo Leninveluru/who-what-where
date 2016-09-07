@@ -7,6 +7,6 @@ a search engine for business.
 4. Open the nodejs command promt
 5. Go inside the folder with command cd folder path
 6. Now install all the Dependecies in your system which is mention in package.json with the command 'npm install'
-7. After all the installation run the command 'npm start'
+7. After all the installation run the command 'npm start' or 'npm run start'
 8. Open the browser and open the link which is shown in nodejs command promt
    For example(localhost:8888)

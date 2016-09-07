@@ -14,32 +14,39 @@
 <body ng-controller="myCtrl">
 
 <div class="row set-border-color">
-    <h1 class="pull-left app-heading">Who What Where</h1>
-    <div class="pull-right search-box">
+     <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
+        <h1 class="pull-left app-heading">Who What Where</h1>     
+     </div>
+
+     <div class="pull-right search-box col-xs-12 col-sm-6 col-md-5 col-lg-5">
         <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
-                <input type="text" placeholder="What?" ng-model="query"/>
+            <div class="set-input col-xs-12 col-sm-6 col-md-5 col-lg-5">
+                <input type="text" placeholder="What?" ng-model="query" autofocus/>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
+            <div class="set-input col-xs-12 col-sm-6 col-md-5 col-lg-5">
                 <input type="text" placeholder="Where?" ng-model="location"/>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-                <button class="btn btn-info" ng-click="onSearchButton()">Search</button>
+            <div class="set-input col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                <button class="set-search-btn btn btn-info" ng-click="onSearchButton()">Search</button>
             </div>
         </div>
-    </div>
+     </div>
 </div>
 
 <!--default food items-->
-<div ng-if="!showListAndMap" class="set-default-container">
-    <h1 class="set-header-text">Find the best places to eat, drink, shop, or visit in any city in the world.</h1>
-    <div class="row">
+<div ng-if="!showListAndMap">
+    <div>
+        <h1 class="set-header-text">Find the best places to eat, drink, shop, or visit in any city in the world.</h1>
+    </div>
+
+    <div class="row set-image">
         <div class="col-xs-3"></div>
         <div class="col-xs-6">
-            <div><img ng-repeat="img in [0,1,2]" ng-src="./images/food.jpg"/></div>
+            <img ng-repeat="img in [1,2]" ng-src="./images/food-{{img}}.jpg"/>
         </div>
         <div class="col-xs-3"></div>
     </div>
+
 </div>
 
 <!-- displaying the list and map -->
@@ -50,8 +57,8 @@
              id="{{ item.id }}" ng-click="onClick(item.url)">
 
             <div class="panel-container">
-                <div class="pull-left"><img class="image" ng-src="{{item.image}}"/></div>
-                <div class="item-details">
+                <div class="pull-left"><img class="panel-image" ng-src="{{item.image}}"/></div>
+                <div class="address-details">
                     <div class="item-name">{{(item.class + 1) + '. ' +item.name}}</div>
                     <div class="item-address">{{item.address}}</div>
                     <div class="item-phone">{{item.phone}}</div>
