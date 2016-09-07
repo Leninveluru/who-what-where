@@ -31,6 +31,7 @@ app.controller('myCtrl', function ($scope, $http, $window) {
 				loadInitMapMarkers();
 			} else {
 				console.log('No Results found');
+				alert('No Results found');
 			}
 		}, function (error) {
 			console.error(error);
@@ -105,8 +106,9 @@ app.controller('myCtrl', function ($scope, $http, $window) {
 	};
 
 	function onScrollElementToTop(number) {
+		var top = $('.list-container .element-' + number).get(0).offsetTop;
 		$('.list-container').animate({
-			scrollTop: $('.list-container .element-' + number).offset().top - 250
+			scrollTop: top
 		}, 1000);
 	}
 

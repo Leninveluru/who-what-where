@@ -4,11 +4,12 @@ html, body {
     padding: 0;
     background-color: bisque;
     overflow-x: hidden;
+    position: relative;
 }
 
 .set-border-color{
     border: 5px solid #483d3b;
-    background-color: #1ba9b5;
+    background-color: darkcyan;
 }
 
 .app-heading {
@@ -49,7 +50,7 @@ input[type="text"] {
 }
 
 .set-input{
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .set-header-text{
@@ -60,16 +61,11 @@ input[type="text"] {
     font-weight: 700;
     margin-top: 30px;
     border: 3px solid green;
-    background-color: palegreen;
+    background-color: orange;
 }
 
 .set-image{
-    margin-top: 30px;
-}
-
-.main-container {
-    /*margin-top: 10px;*/
-    border: 3px solid orangered;
+    margin-top: 150px;
 }
 
 .list-container {
