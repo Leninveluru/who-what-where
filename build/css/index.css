@@ -2,14 +2,14 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: bisque;
+    background-color: #ffe4c4;
     overflow-x: hidden;
     position: relative;
 }
 
 .set-border-color{
     border: 5px solid #483d3b;
-    background-color: darkcyan;
+    background-color: #008b8b;
 }
 
 .app-heading {
@@ -17,7 +17,7 @@ html, body {
     font-style: italic;
     font-weight: bold;
     font-size: 50px;
-    color: orange;
+    color: #ffa500;
     padding-left: 30px;
 }
 
@@ -60,8 +60,8 @@ input[type="text"] {
     font-style: italic;
     font-weight: 700;
     margin-top: 30px;
-    border: 3px solid green;
-    background-color: orange;
+    border: 3px solid #008000;
+    background-color: #ffa500;
 }
 
 .set-image{
@@ -81,13 +81,15 @@ input[type="text"] {
     width: 100%;
     border-radius: 5px;
     background-color: #ffffff;
-    border: 1px solid red;
+    border: 1px solid #ff0000;
 }
 
 .panel-image {
     width: 100px;
     height: 100px;
     margin-left: 10px;
+    margin-top: 22px;
+    border-radius: 50px;
 }
 
 .address-details {
@@ -102,21 +104,19 @@ input[type="text"] {
     font-weight: bold;
 }
 
-/*.rating-button {
+.rating-button {
     width: 42px;
     height: 28px;
-    background-color: burlywood;
+    background-color: #6495ed;
     font-size: 16px;
     font-style: italic;
     color: #ffffff;
     font-weight: bold;
     text-align: center;
-    float: right;
-    margin-top: -5px;
     line-height: 30px;
     border-radius: 4px;
-    margin-right: 10px;
-}*/
+    margin-bottom: 5px;
+}
 
 .map-container {
     width: 60%;

@@ -152,7 +152,6 @@ app.controller('myCtrl', function ($scope, $http, $window) {
 				position: new google.maps.LatLng(cords.lat, cords.lon),
 				title   : locations[i].name,
 				map     : map,
-				draggable: true,
 				animation: google.maps.Animation.DROP
 			});
 
