@@ -70,7 +70,7 @@ input[type="text"] {
 
 .list-container {
     width: 40%;
-    height: 868px;
+    height: 860px;
     overflow-y: auto;
     cursor: pointer;
 }

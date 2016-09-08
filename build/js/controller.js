@@ -151,7 +151,9 @@ app.controller('myCtrl', function ($scope, $http, $window) {
 				number  : i,
 				position: new google.maps.LatLng(cords.lat, cords.lon),
 				title   : locations[i].name,
-				map     : map
+				map     : map,
+				draggable: true,
+				animation: google.maps.Animation.DROP
 			});
 
 			markers.push(addMarker(_marker));
