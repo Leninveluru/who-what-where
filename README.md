@@ -1,12 +1,17 @@
 # who-what-where
 a search engine for business.
 
-1. create a folder in your system.
-2. open 'git bash' command promt
-3. clone the folder in your system (https://github.com/Leninveluru/who-what-where.git) from gitHub
-4. Open the nodejs command promt
-5. Go inside the folder with command cd folder path
-6. Now install all the Dependecies in your system which is mention in package.json with the command 'npm install'
-7. After all the installation run the command 'npm start' or 'npm run start'
-8. Open the browser and open the link which is shown in nodejs command promt
-   For example(localhost:8888)
+after cloning the repository follow the steps,
+
+1. Open node.js command promt and move to clonned directory.
+2. To install all the dependecies ,use command 'npm install'
+3. After the installation is done; run the command 'npm start' to start the application.
+4. Application will start and open in new window.
+
+How to use.
+-As the application loads,there are two search inputs where you can enter your queries.
+-'What?' stands for ,what business you are searching for.
+-'Where?' stands for area in which you want to search the business.
+-If you are using a modern browser the where field will be filled with your current city.
+
+**Happy Searching!

@@ -119,7 +119,7 @@ app.controller('myCtrl', function ($scope, $http, $window) {
 		});
 
 		var infowindow = new google.maps.InfoWindow({
-			content: _marker.title
+			content: _marker.title + '-' + _marker.address
 		});
 
 		marker.addListener('mouseover', function () {
@@ -151,6 +151,7 @@ app.controller('myCtrl', function ($scope, $http, $window) {
 				number  : i,
 				position: new google.maps.LatLng(cords.lat, cords.lon),
 				title   : locations[i].name,
+				address   : locations[i].address,
 				map     : map,
 				animation: google.maps.Animation.DROP
 			});
